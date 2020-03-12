@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutterapp1/widget/dropdown_formfield.dart';
+import 'package:flutter/scheduler.dart' show timeDilation;
 
 class ReflectSendPage extends StatefulWidget {
   static String tag = 'login-page';
@@ -31,6 +32,15 @@ class _ReflectSendPageState extends State<ReflectSendPage> {
     }
   }
 
+  // check box
+  bool _isChecked = true;
+  String _currText = '';
+  List<String> text = [
+    'Có trường hợp nghi ngờ mắc bệnh',
+    'B',
+    'C',
+  ];
+
   @override
   Widget build(BuildContext context) {
     final title = Row(
@@ -45,7 +55,7 @@ class _ReflectSendPageState extends State<ReflectSendPage> {
     );
 
     final labeldetectionTime = Text(
-      'Thời gian phát hiện (*)',
+      'Thời gian phát hiện '+'(*)',
       style: TextStyle(
         fontWeight: FontWeight.bold,
         fontSize: 16.0,
@@ -69,6 +79,14 @@ class _ReflectSendPageState extends State<ReflectSendPage> {
       ],
     );
 
+    final labelProvince = Text(
+      'Địa điểm ' + '(*)',
+      style: TextStyle(
+        fontWeight: FontWeight.bold,
+        fontSize: 16.0,
+      ),
+    );
+
     final province = Column(
       children: <Widget>[
         SizedBox(
@@ -87,6 +105,33 @@ class _ReflectSendPageState extends State<ReflectSendPage> {
       ],
     );
 
+    final labelReflectionContent = Text(
+      'Nội dung phản ánh'+'(*)',
+      style: TextStyle(
+        fontWeight: FontWeight.bold,
+        fontSize: 16.0,
+      ),
+    );
+
+    final ReflectionContent = Container(
+        child: Column(
+          children: text
+              .map((t) => CheckboxListTile(
+            title: Text(t),
+            value: _isChecked,
+            onChanged: (val) {
+              setState(() {
+                _isChecked = val;
+                if (val == true) {
+                  _currText = t;
+                }
+              });
+            },
+          ))
+              .toList(),
+        ),
+    );
+
 
     return Scaffold(
       appBar: AppBar(),
@@ -103,6 +148,10 @@ class _ReflectSendPageState extends State<ReflectSendPage> {
             ),
             labeldetectionTime,
             detectionTime,
+            labelProvince,
+            province,
+            labelReflectionContent,
+            ReflectionContent,
           ],
         ),
       ),

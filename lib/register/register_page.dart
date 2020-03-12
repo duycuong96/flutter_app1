@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -28,7 +29,6 @@ class _RegisterPageState extends State<RegisterPage> {
           RaisedButton(
 
             onPressed: () {
-              //          Navigator.of(context).pushNamed(HomePage.tag);
             },
             color: Colors.white,
             child: Image.asset(
@@ -39,7 +39,7 @@ class _RegisterPageState extends State<RegisterPage> {
           RaisedButton(
 
             onPressed: () {
-              //          Navigator.of(context).pushNamed(HomePage.tag);
+
             },
             color: Colors.white,
             child: Image.asset(
@@ -141,22 +141,30 @@ class _RegisterPageState extends State<RegisterPage> {
       ),
     );
 
-    return Scaffold(
-      backgroundColor: Colors.white,
-      body: Container(
-        child: ListView(
-          shrinkWrap: true,
-          padding: EdgeInsets.only(left: 25.0, right: 25.0),
-          children: <Widget>[
-            logo,
 
-            switchLanguage,
+    var dataLocal = EasyLocalizationProvider.of(context).data;
+    return EasyLocalizationProvider(
+        data: dataLocal,
+        child: Scaffold(
+          backgroundColor: Colors.white,
+          body: Container(
+            child: ListView(
+              shrinkWrap: true,
+              padding: EdgeInsets.symmetric(vertical: 25.0),
+              children: <Widget>[
+                logo,
+                switchLanguage,
+                formRegister,
+                Row(
+                  children: <Widget>[
 
-            formRegister,
-
-          ],
+                  ],
+                )
+              ],
+            ),
+          ),
         ),
-      ),
     );
+
   }
 }

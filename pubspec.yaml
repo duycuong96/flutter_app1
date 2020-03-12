@@ -20,6 +20,14 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  # import for translate
+  flutter_localizations:
+    sdk: flutter
+  # import for translate
+  easy_localization: ^1.4.0+2
+  json_annotation: ^3.0.1
+  address_picker: ^0.0.1
+
   persian_datepicker: ^0.2.1
   http: ^0.12.0+4
   intl: ">=0.15.0 <1.0.0"
@@ -31,6 +39,7 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  chewie: ^0.9.7
 
 
 # For information on the generic Dart part of this file, see the
@@ -39,7 +48,11 @@ dev_dependencies:
 # The following section is specific to Flutter.
 flutter:
   assets:
+    - videos/
     - images/
+    - lang/
+    - lib/db/vn_db.json
+
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
   # the material Icons class.
